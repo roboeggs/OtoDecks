@@ -6,9 +6,13 @@ MainComponent::MainComponent()
     setSize (600, 400);
 
 	addAndMakeVisible(playButton);
+    addAndMakeVisible(stopButton);
+
     addAndMakeVisible(volSlider);
 
+
 	playButton.addListener(this);
+    stopButton.addListener(this);
 }
 
 MainComponent::~MainComponent()
@@ -22,9 +26,9 @@ void MainComponent::paint (juce::Graphics& g)
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
 
-    g.setFont (juce::FontOptions (16.0f));
+ /*   g.setFont (juce::FontOptions (16.0f));
     g.setColour (juce::Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), juce::Justification::centred, true);
+    g.drawText ("Hello World!", getLocalBounds(), juce::Justification::centred, true);*/
 }
 
 void MainComponent::resized()
@@ -35,17 +39,21 @@ void MainComponent::resized()
 
     double rowH = getHeight() / 5;
 	playButton.setBounds(0, 0, getWidth(), rowH);
-    volSlider.setBounds(0, rowH, getWidth(), rowH);
+	stopButton.setBounds(0, rowH, getWidth(), rowH);
+    volSlider.setBounds(0, rowH * 2 , getWidth(), rowH);
 
 }
 
 void MainComponent::buttonClicked(juce::Button* button)
 {
-    std::cout << "Button was clicked" << std::endl;
 	if (button == &playButton)
 	{
 		juce::Logger::writeToLog("Play button clicked");
 	}
+    if (button == &stopButton)
+    {
+        juce::Logger::writeToLog("Stop button clicked");
+    }
 }
 
 void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
