@@ -6,9 +6,14 @@
     <GROUP id="{63173A5D-A24A-1660-9097-F7EAF0DA850B}" name="Source">
       <FILE id="sz3Bk8" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="ZbgK0o" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="rzAOoO" name="DJAudioPlayer.cpp" compile="1" resource="0"
+            file="Source/DJAudioPlayer.cpp"/>
+      <FILE id="fKDGji" name="DJAudioPlayer.h" compile="0" resource="0" file="Source/DJAudioPlayer.h"/>
       <FILE id="sUTJPC" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
     </GROUP>
+    <FILE id="sMjJmc" name="DeckGUI.cpp" compile="1" resource="0" file="Source/DeckGUI.cpp"/>
+    <FILE id="c3n192" name="DeckGUI.h" compile="0" resource="0" file="Source/DeckGUI.h"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
