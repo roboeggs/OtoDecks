@@ -4,7 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Users/andfi/Documents/Study/CM2005 Object-Oriented Programming/Projects/OtoDecks/JuceLibraryCode"
+                "${workspaceFolder}/JuceLibraryCode/**",
+                "${workspaceFolder}/Source/**",
+                "C:/Program Files/Microsoft Visual Studio/JUCE/modules/"
             ],
             "defines": [
                 "_DEBUG",
@@ -12,7 +14,7 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.19041.0",
-            // "compilerPath": "C:/Path/To/Your/Compiler/cl.exe",
+            "compilerPath": "cl.exe",
             "intelliSenseMode": "msvc-x64",
             "cStandard": "c11",
             "cppStandard": "c++17"

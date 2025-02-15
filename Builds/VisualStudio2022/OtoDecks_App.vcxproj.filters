@@ -664,6 +664,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\PlaylistComponent.cpp">
+      <Filter>OtoDecks\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\DeckGUI.cpp">
+      <Filter>OtoDecks\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\WaveformDisplay.cpp">
+      <Filter>OtoDecks\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>OtoDecks\Source</Filter>
     </ClCompile>
@@ -672,9 +681,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>OtoDecks\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DeckGUI.cpp">
-      <Filter>OtoDecks</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.cpp">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>
@@ -3519,14 +3525,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\DeckGUI.h">
+      <Filter>OtoDecks\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PlaylistComponent.h">
+      <Filter>OtoDecks\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\WaveformDisplay.h">
+      <Filter>OtoDecks\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\MainComponent.h">
       <Filter>OtoDecks\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DJAudioPlayer.h">
       <Filter>OtoDecks\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DeckGUI.h">
-      <Filter>OtoDecks</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>

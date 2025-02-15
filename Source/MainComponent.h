@@ -3,6 +3,7 @@
 #include <JuceHeader.h>
 #include "DJAudioPlayer.h"
 #include "DeckGUI.h"
+#include "PlaylistComponent.h"
 
 
 //==============================================================================
@@ -32,6 +33,9 @@ private:
     //==============================================================================
     // Your private member variables go here...
 
+	juce::AudioFormatManager formatManager;
+    juce::AudioThumbnailCache thumbCache{ 100 };
+
     juce::TextButton playButton{ "PLAY" };
 	juce::TextButton stopButton{ "STOP" };
     juce::TextButton loadButton{ "LOAD" };
@@ -42,12 +46,13 @@ private:
 
     //juce::FileChooser fChooser{ "Select a file..." };
 
-    DJAudioPlayer player1;
-    DeckGUI deckGUI1{&player1};
-    DJAudioPlayer player2;
-    DeckGUI deckGUI2{&player2};
+    DJAudioPlayer player1{formatManager};
+    DeckGUI deckGUI1{&player1, formatManager, thumbCache};
+    DJAudioPlayer player2{ formatManager };
+    DeckGUI deckGUI2{&player2, formatManager, thumbCache};
 
 	juce::MixerAudioSource mixerSource;
+	PlaylistComponent playlistComponent;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

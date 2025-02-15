@@ -15,7 +15,7 @@
 class DJAudioPlayer : public juce::AudioSource
 {
 public:
-    DJAudioPlayer();
+    DJAudioPlayer(juce::AudioFormatManager& _formatManager);
     ~DJAudioPlayer() override;
     void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override;
     void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill) override;
@@ -29,11 +29,14 @@ public:
 
     void start();
     void stop();
+    
+    /* get the relative position of the playhead */
+    double getPositionRelative();
 
     void loadURL(const juce::URL& audioURL);
 
 private: 
-    juce::AudioFormatManager formatManager;
+    juce::AudioFormatManager& formatManager;
 	std::unique_ptr<juce::AudioFormatReaderSource> readerSource;
 	juce::AudioTransportSource transportSource;
 	juce::ResamplingAudioSource resampleSource{ &transportSource, false, 2 };
