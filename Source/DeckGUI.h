@@ -13,6 +13,7 @@
 #include <JuceHeader.h>
 #include "DJAudioPlayer.h"
 #include "WaveformDisplay.h"
+#include "InfiniteRotarySliderComponent.h"
 
 //==============================================================================
 /*
@@ -41,6 +42,9 @@ public:
     void timerCallback();
 
 private:
+
+    InfiniteRotarySliderComponent infiniteRotarySlider;
+
     juce::TextButton playButton{ "PLAY" };
     juce::TextButton stopButton{ "STOP" };
     juce::TextButton loadButton{ "LOAD" };

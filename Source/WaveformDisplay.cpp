@@ -54,7 +54,8 @@ void WaveformDisplay::paint (juce::Graphics& g)
             1.0f
         );
         g.setColour(juce::Colours::lightgreen);
-		g.drawRect(position * getWidth(), 0, getWidth() / 20, getHeight());
+        g.fillRect(static_cast<float> (position * getWidth()), 0.0f,
+            1.0f, static_cast<float> (getHeight()));
     }
     else
     {
@@ -104,4 +105,15 @@ void WaveformDisplay::setPositionRelative(double pos)
 		audioThumb.setPlayPosition(pos);
 		repaint();
 	}*/
+}
+
+void WaveformDisplay::mouseDrag(const juce::MouseEvent& e)
+{
+   /* if (transportSource != nullptr)
+    {
+        const ScopedLock sl(audioDeviceManager.getAudioCallbackLock());
+
+        transportSource->setPosition((juce::jmax(static_cast<double> (e.x), 0.0) / getWidth())
+            * audioThumb.getTotalLength());
+    }*/
 }

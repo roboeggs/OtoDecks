@@ -34,9 +34,12 @@ public:
 	void setPositionRelative(double pos);
 
 private:
+    void mouseDrag(const juce::MouseEvent& e) override;
+
 	juce::AudioThumbnail audioThumb;
     bool fileLoaded;
     double position;
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveformDisplay)
 };

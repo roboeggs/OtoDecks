@@ -36,16 +36,6 @@ private:
 	juce::AudioFormatManager formatManager;
     juce::AudioThumbnailCache thumbCache{ 100 };
 
-    juce::TextButton playButton{ "PLAY" };
-	juce::TextButton stopButton{ "STOP" };
-    juce::TextButton loadButton{ "LOAD" };
-
-    juce::Slider volSlider;
-    juce::Slider speedSlider;
-	juce::Slider posSlider;
-
-    //juce::FileChooser fChooser{ "Select a file..." };
-
     DJAudioPlayer player1{formatManager};
     DeckGUI deckGUI1{&player1, formatManager, thumbCache};
     DJAudioPlayer player2{ formatManager };

@@ -77,6 +77,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/WaveformDisplay_c81a80a6.o \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
   $(JUCE_OBJDIR)/DJAudioPlayer_f05158f2.o \
+  $(JUCE_OBJDIR)/InfiniteRotarySliderComponent_92d351d8.o \
   $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -131,6 +132,11 @@ $(JUCE_OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 $(JUCE_OBJDIR)/DJAudioPlayer_f05158f2.o: ../../Source/DJAudioPlayer.cpp
 	-$(V_AT)mkdir -p $(@D)
 	@echo "Compiling DJAudioPlayer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/InfiniteRotarySliderComponent_92d351d8.o: ../../Source/InfiniteRotarySliderComponent.cpp
+	-$(V_AT)mkdir -p $(@D)
+	@echo "Compiling InfiniteRotarySliderComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o: ../../Source/MainComponent.cpp

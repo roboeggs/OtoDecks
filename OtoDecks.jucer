@@ -6,21 +6,28 @@
     <GROUP id="{63173A5D-A24A-1660-9097-F7EAF0DA850B}" name="Source">
       <FILE id="c3n192" name="DeckGUI.h" compile="0" resource="0" file="Source/DeckGUI.h"/>
       <FILE id="DiySDk" name="PlaylistComponent.cpp" compile="1" resource="0"
-            file="Source/PlaylistComponent.cpp"/>
-      <FILE id="sMjJmc" name="DeckGUI.cpp" compile="1" resource="0" file="Source/DeckGUI.cpp"/>
+            file="Source/PlaylistComponent.cpp" skipPCH="1"/>
+      <FILE id="sMjJmc" name="DeckGUI.cpp" compile="1" resource="0" file="Source/DeckGUI.cpp"
+            skipPCH="1"/>
       <FILE id="PEBVub" name="PlaylistComponent.h" compile="0" resource="0"
             file="Source/PlaylistComponent.h"/>
       <FILE id="jnSHXB" name="WaveformDisplay.cpp" compile="1" resource="0"
-            file="Source/WaveformDisplay.cpp"/>
+            file="Source/WaveformDisplay.cpp" skipPCH="1"/>
       <FILE id="NY3nMH" name="WaveformDisplay.h" compile="0" resource="0"
             file="Source/WaveformDisplay.h"/>
-      <FILE id="sz3Bk8" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="sz3Bk8" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"
+            skipPCH="1"/>
       <FILE id="ZbgK0o" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="rzAOoO" name="DJAudioPlayer.cpp" compile="1" resource="0"
-            file="Source/DJAudioPlayer.cpp"/>
+            file="Source/DJAudioPlayer.cpp" skipPCH="1"/>
+      <FILE id="kTafNL" name="InfiniteRotarySliderComponent.cpp" compile="1"
+            resource="0" file="Source/InfiniteRotarySliderComponent.cpp"
+            skipPCH="1"/>
+      <FILE id="AfjnLA" name="InfiniteRotarySliderComponent.h" compile="0"
+            resource="0" file="Source/InfiniteRotarySliderComponent.h"/>
       <FILE id="fKDGji" name="DJAudioPlayer.h" compile="0" resource="0" file="Source/DJAudioPlayer.h"/>
       <FILE id="sUTJPC" name="MainComponent.cpp" compile="1" resource="0"
-            file="Source/MainComponent.cpp"/>
+            file="Source/MainComponent.cpp" skipPCH="1"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

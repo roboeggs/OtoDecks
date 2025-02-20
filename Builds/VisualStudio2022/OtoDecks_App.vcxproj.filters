@@ -679,6 +679,9 @@
     <ClCompile Include="..\..\Source\DJAudioPlayer.cpp">
       <Filter>OtoDecks\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\InfiniteRotarySliderComponent.cpp">
+      <Filter>OtoDecks\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>OtoDecks\Source</Filter>
     </ClCompile>
@@ -3535,6 +3538,9 @@
       <Filter>OtoDecks\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MainComponent.h">
+      <Filter>OtoDecks\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\InfiniteRotarySliderComponent.h">
       <Filter>OtoDecks\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DJAudioPlayer.h">

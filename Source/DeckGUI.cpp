@@ -27,7 +27,8 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
 
     addAndMakeVisible(volSlider);
     addAndMakeVisible(speedSlider);
-    addAndMakeVisible(posSlider);
+    //addAndMakeVisible(posSlider);
+    addAndMakeVisible(infiniteRotarySlider);
 
 	addAndMakeVisible(waveformDisplay);
 
@@ -48,7 +49,7 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     speedSlider.setSliderStyle(juce::Slider::LinearVertical);
 
 
-    posSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    posSlider.setSliderStyle(juce::Slider::Rotary);
     //posSlider.setRotaryParameters(juce::Slider::RotaryParameters::endAngleRadians);
 
     startTimer(500);
@@ -77,6 +78,11 @@ void DeckGUI::paint (juce::Graphics& g)
     g.setFont (juce::FontOptions (14.0f));
     g.drawText ("DeckGUI", getLocalBounds(),
                 juce::Justification::centred, true);   // draw some placeholder text
+ 
+    /** Draw infiniteRotarySlider's value */
+    //g.drawText((juce::String)infiniteRotarySlider.getAdjustedValue(),
+    //    0, 0, getWidth(), getHeight(),
+    //    juce::Justification::centred);
 }
 
 void DeckGUI::resized()
@@ -106,11 +112,17 @@ void DeckGUI::resized()
     speedSlider.setBounds(sliderW * 1, rowH * 2, sliderW, rowH * 5);
 
     // colum 2
-    posSlider.setBounds(colW, rowH * 2, colW, rowH * 3);
+    //posSlider.setBounds(colW, rowH * 2, colW, rowH * 3);
     playButton.setBounds(colW, rowH * 5, colW / 2, rowH);
     stopButton.setBounds(colW + colW / 2, rowH * 5, colW / 2, rowH);
     loadButton.setBounds(colW, rowH * 6, colW, rowH);
 
+    // This is called when the MainComponent is resized.
+    // If you add any child components, this is where you should
+    // update their positions.
+    /*auto area = getLocalBounds();
+    area.reduce(10, 10);*/
+    infiniteRotarySlider.setBounds(colW, rowH * 2, colW, rowH * 3);
 }
 
 void DeckGUI::buttonClicked(juce::Button* button)
