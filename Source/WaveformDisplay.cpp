@@ -109,11 +109,16 @@ void WaveformDisplay::setPositionRelative(double pos)
 
 void WaveformDisplay::mouseDrag(const juce::MouseEvent& e)
 {
-   /* if (transportSource != nullptr)
+    if (fileLoaded)
     {
-        const ScopedLock sl(audioDeviceManager.getAudioCallbackLock());
+        double newPosition = juce::jmax(static_cast<double> (e.x), 0.0) / getWidth();
+        newPosition = juce::jlimit(0.0, 1.0, newPosition); // Ensure newPosition is between 0 and 1
+        setPositionRelative(newPosition);
 
-        transportSource->setPosition((juce::jmax(static_cast<double> (e.x), 0.0) / getWidth())
-            * audioThumb.getTotalLength());
-    }*/
+        // Notify the player about the new position
+        if (onPositionChanged)
+        {
+            onPositionChanged(newPosition);
+        }
+    }
 }

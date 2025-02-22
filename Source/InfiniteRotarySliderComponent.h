@@ -23,6 +23,7 @@ public:
     /** Add third parameter double newInt - interval */
     void setRange(double newMinimum, double newMaximum);
     void setValue(double newValue);
+    void setAngle(float newAngle);
 
     InfiniteRotarySliderComponent();
     ~InfiniteRotarySliderComponent() override;

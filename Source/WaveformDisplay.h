@@ -11,12 +11,13 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <functional>
 
 //==============================================================================
 /*
 */
 class WaveformDisplay  : public juce::Component,
-                         public juce:: ChangeListener
+                         public juce::ChangeListener
 {
 public:
     WaveformDisplay(juce::AudioFormatManager& formatManagerToUse,
@@ -33,6 +34,11 @@ public:
     /** set the relative position of the playhead */
 	void setPositionRelative(double pos);
 
+    // Callback function to notify the player about the new position
+    std::function<void(double)> onPositionChanged;
+
+
+
 private:
     void mouseDrag(const juce::MouseEvent& e) override;
 
@@ -43,3 +49,5 @@ private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveformDisplay)
 };
+
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
   ==============================================================================
 
     DeckGUI.cpp
@@ -52,7 +52,12 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     posSlider.setSliderStyle(juce::Slider::Rotary);
     //posSlider.setRotaryParameters(juce::Slider::RotaryParameters::endAngleRadians);
 
-    startTimer(500);
+    startTimer(40);
+
+    // Устанавливаем колбэк для waveformDisplay
+    waveformDisplay.onPositionChanged = [this, player](double newPosition) {
+        player->setPositionRelative(newPosition);
+        };
 }
     
 DeckGUI::~DeckGUI()
@@ -80,9 +85,9 @@ void DeckGUI::paint (juce::Graphics& g)
                 juce::Justification::centred, true);   // draw some placeholder text
  
     /** Draw infiniteRotarySlider's value */
-    //g.drawText((juce::String)infiniteRotarySlider.getAdjustedValue(),
-    //    0, 0, getWidth(), getHeight(),
-    //    juce::Justification::centred);
+    g.drawText((juce::String)infiniteRotarySlider.getAdjustedValue(),
+        0, 0, getWidth(), getHeight(),
+        juce::Justification::right);
 }
 
 void DeckGUI::resized()
@@ -190,6 +195,18 @@ void DeckGUI::filesDropped(const juce::StringArray& files, int x, int y)
 
 void DeckGUI::timerCallback() 
 {
-    juce::Logger::writeToLog("DeckGUI::timerCallback");
-	waveformDisplay.setPositionRelative(player->getPositionRelative());
+    //juce::Logger::writeToLog("DeckGUI::timerCallback");
+	//waveformDisplay.setPositionRelative(player->getPositionRelative());
+	//infiniteRotarySlider.setValue(player->getPositionRelative() * 100);
+
+    //juce::Logger::writeToLog("DeckGUI::timerCallback");
+    double positionRelative = player->getPositionRelative();
+    waveformDisplay.setPositionRelative(positionRelative);
+    infiniteRotarySlider.setValue(positionRelative * 100);
+
+    // Calculate the angle based on the relative position
+    float angle = static_cast<float>(positionRelative * juce::MathConstants<double>::pi * 8);
+    infiniteRotarySlider.setAngle(angle);
+
+    //infiniteRotarySlider.repaint();
 }

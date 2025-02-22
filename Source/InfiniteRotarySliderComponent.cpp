@@ -113,6 +113,7 @@ void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
             getHeight() * 0.5));
 
     g.fillPath(spot);
+
 }
 
 void InfiniteRotarySliderComponent::resized()
@@ -189,4 +190,11 @@ void InfiniteRotarySliderComponent::setRange(double newMinimum, double newMaximu
 
 void InfiniteRotarySliderComponent::setValue(double newValue) {
     m_adjustedValue = newValue;
+}
+
+void InfiniteRotarySliderComponent::setAngle(float newAngle)
+{
+    m_angle = newAngle;
+    m_endAngle = newAngle; // Update the end angle to match the new angle
+    repaint(); // Trigger a repaint to update the visual representation
 }
