@@ -198,3 +198,31 @@ void InfiniteRotarySliderComponent::setAngle(float newAngle)
     m_endAngle = newAngle; // Update the end angle to match the new angle
     repaint(); // Trigger a repaint to update the visual representation
 }
+
+void InfiniteRotarySliderComponent::setOneRevolutionSliderMin(float newMin) {
+    m_oneRevolutionSliderMin = newMin;
+}
+
+void InfiniteRotarySliderComponent::setOneRevolutionSliderMax(float newMax) {
+    m_oneRevolutionSliderMax = newMax;
+}
+
+void InfiniteRotarySliderComponent::setEndAngle(float newEndAngle) {
+    m_endAngle = newEndAngle;
+}
+
+void InfiniteRotarySliderComponent::setStartValue(float newStartValue) {
+    m_startValue = newStartValue;
+}
+
+void InfiniteRotarySliderComponent::setStartValueNeedUpdate(bool newStartValueNeedUpdate) {
+    m_startValueNeedUpdate = newStartValueNeedUpdate;
+}
+
+void InfiniteRotarySliderComponent::setStep(float newStep) {
+    m_step = newStep;
+}
+
+void InfiniteRotarySliderComponent::setAdjustedValue(float newAdjustedValue) {
+    m_adjustedValue = newAdjustedValue;
+}

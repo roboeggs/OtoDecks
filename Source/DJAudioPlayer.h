@@ -33,6 +33,8 @@ public:
     /* get the relative position of the playhead */
     double getPositionRelative();
 
+    double getPositionInSeconds();
+
     void loadURL(const juce::URL& audioURL);
 
 private: 

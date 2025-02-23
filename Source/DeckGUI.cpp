@@ -41,13 +41,27 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     stopButton.addListener(this);
     loadButton.addListener(this);
 
-	volSlider.setRange(0, 1);
-	speedSlider.setRange(0, 100);
+    volSlider.setValue(50);
+    speedSlider.setValue(1);
+
+	speedSlider.setRange(0, 1);
+	volSlider.setRange(0, 100);
 	posSlider.setRange(0, 1);
 
     volSlider.setSliderStyle(juce::Slider::LinearVertical);
-    speedSlider.setSliderStyle(juce::Slider::LinearVertical);
+    volSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20); // Размещение текстового поля
+	volSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::green); // Цвет текстового поля
+    volSlider.setNumDecimalPlacesToDisplay(0);
+    volSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack); // Убираем обводку текстового поля
 
+
+    speedSlider.setSliderStyle(juce::Slider::LinearVertical);
+    speedSlider.setNumDecimalPlacesToDisplay(3);
+    speedSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::green);
+    speedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20);
+    speedSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack); // Убираем обводку текстового поля
+
+    
 
     posSlider.setSliderStyle(juce::Slider::Rotary);
     //posSlider.setRotaryParameters(juce::Slider::RotaryParameters::endAngleRadians);
@@ -201,12 +215,12 @@ void DeckGUI::timerCallback()
 
     //juce::Logger::writeToLog("DeckGUI::timerCallback");
     double positionRelative = player->getPositionRelative();
+	double positionInSeconds = player->getPositionInSeconds();
+
     waveformDisplay.setPositionRelative(positionRelative);
     infiniteRotarySlider.setValue(positionRelative * 100);
 
     // Calculate the angle based on the relative position
-    float angle = static_cast<float>(positionRelative * juce::MathConstants<double>::pi * 8);
+    float angle = static_cast<float>(positionInSeconds * juce::MathConstants<double>::pi * 0.4);
     infiniteRotarySlider.setAngle(angle);
-
-    //infiniteRotarySlider.repaint();
 }

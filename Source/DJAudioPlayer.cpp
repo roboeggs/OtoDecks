@@ -55,13 +55,13 @@ void DJAudioPlayer::loadURL(const juce::URL& audioURL)
 }
 void DJAudioPlayer::setGain(double newGain)
 {
-	if (newGain < 0 || newGain > 1)
+	if (newGain < 0 || newGain > 100)
 	{
-		juce::Logger::writeToLog("DJAudioPlayer::setGain gain should be beetween 0 and 1");
+		juce::Logger::writeToLog("DJAudioPlayer::setGain gain should be beetween 0 and 100");
 	}
 	else
 	{
-		transportSource.setGain(newGain);
+		transportSource.setGain(newGain / 100);
 	}
 
 }
@@ -106,4 +106,9 @@ void DJAudioPlayer::stop()
 double DJAudioPlayer::getPositionRelative() 
 {
 	return transportSource.getCurrentPosition() / transportSource.getLengthInSeconds();
+}
+
+double DJAudioPlayer::getPositionInSeconds()
+{
+	return transportSource.getCurrentPosition();
 }

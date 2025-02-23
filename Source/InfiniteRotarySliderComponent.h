@@ -25,6 +25,14 @@ public:
     void setValue(double newValue);
     void setAngle(float newAngle);
 
+    void setOneRevolutionSliderMin(float newMin);
+    void setOneRevolutionSliderMax(float newMax);
+    void setEndAngle(float newEndAngle);
+    void setStartValue(float newStartValue);
+    void setStartValueNeedUpdate(bool newStartValueNeedUpdate);
+    void setStep(float newStep);
+    void setAdjustedValue(float newAdjustedValue);
+
     InfiniteRotarySliderComponent();
     ~InfiniteRotarySliderComponent() override;
 
@@ -41,8 +49,8 @@ public:
 
 private:
 
-    const float m_oneRevolutionSliderMin{ 0.0f };
-    const float m_oneRevolutionSliderMax{ 100.0f };
+    float m_oneRevolutionSliderMin{ 0.0f };
+    float m_oneRevolutionSliderMax{ 100.0f };
 
     float m_angle{ 0.0f };
 

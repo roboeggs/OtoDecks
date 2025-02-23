@@ -100,11 +100,6 @@ void WaveformDisplay::setPositionRelative(double pos)
         position = pos;
 		repaint();
     }
-	/*if (fileLoaded)
-	{
-		audioThumb.setPlayPosition(pos);
-		repaint();
-	}*/
 }
 
 void WaveformDisplay::mouseDrag(const juce::MouseEvent& e)
