@@ -154,8 +154,13 @@ void InfiniteRotarySliderComponent::m_processSliderValue(float value) {
     m_adjustedValue = juce::jmin(m_adjustedValue, m_knobMax);
     m_adjustedValue = juce::jmax(m_adjustedValue, m_knobMin);
 
-    if (onValueChange) {
-        onValueChange();
+    //if (onValueChange) {
+    //    onValueChange();
+    //}
+    // Notify the track position change
+    if (onTrackPositionChange) {
+        double newPosition = m_adjustedValue / 180 * 0.4; // Assuming the value is scaled to 0-100
+        onTrackPositionChange(newPosition);
     }
 }
 

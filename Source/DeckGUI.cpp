@@ -41,12 +41,13 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     stopButton.addListener(this);
     loadButton.addListener(this);
 
-    volSlider.setValue(50);
-    speedSlider.setValue(1);
+    playButtonSetColor();
 
 	speedSlider.setRange(0, 1);
 	volSlider.setRange(0, 100);
 	posSlider.setRange(0, 1);
+    volSlider.setValue(50);
+    speedSlider.setValue(1);
 
     volSlider.setSliderStyle(juce::Slider::LinearVertical);
     volSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20); // Размещение текстового поля
@@ -61,8 +62,6 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     speedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20);
     speedSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack); // Убираем обводку текстового поля
 
-    
-
     posSlider.setSliderStyle(juce::Slider::Rotary);
     //posSlider.setRotaryParameters(juce::Slider::RotaryParameters::endAngleRadians);
 
@@ -70,6 +69,16 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
 
     // Устанавливаем колбэк для waveformDisplay
     waveformDisplay.onPositionChanged = [this, player](double newPosition) {
+        player->setPositionRelative(newPosition);
+        };
+    // Set the onValueChange callback for the infiniteRotarySlider
+    infiniteRotarySlider.onValueChange = [this, player]() {
+        double newPosition = infiniteRotarySlider.getValue() / 100.0;
+        player->setPositionRelative(newPosition);
+        };
+
+    // Set the onTrackPositionChange callback for the infiniteRotarySlider
+    infiniteRotarySlider.onTrackPositionChange = [this, player](double newPosition) {
         player->setPositionRelative(newPosition);
         };
 }
@@ -144,13 +153,24 @@ void DeckGUI::resized()
     infiniteRotarySlider.setBounds(colW, rowH * 2, colW, rowH * 3);
 }
 
+void DeckGUI::playButtonSetColor() 
+{
+    playButton.setButtonText(player->isPlaying() ? "Stop" : "Play");
+    playButton.setColour(juce::TextButton::buttonColourId, player->isPlaying() ? juce::Colour(0xffed797f) : juce::Colour(0xff79ed7f));
+}
+
 void DeckGUI::buttonClicked(juce::Button* button)
 {
     if (button == &playButton)
     {
     	juce::Logger::writeToLog("Play button was clicked");
-    	player->start();
-
+        if (player->isPlaying()) {
+			player->stop();
+        }
+        else {
+    	    player->start();
+        }
+        playButtonSetColor();
     }
     if (button == &stopButton)
     {
@@ -172,9 +192,11 @@ void DeckGUI::buttonClicked(juce::Button* button)
     			juce::File chosenFile = chooser.getResult();
     			player->loadURL(juce::URL{ chosenFile });
                 waveformDisplay.loadURL(juce::URL{ chosenFile });
+
     		});
     }
 }
+
 
 void DeckGUI::sliderValueChanged(juce::Slider* slider)
 {
@@ -210,17 +232,17 @@ void DeckGUI::filesDropped(const juce::StringArray& files, int x, int y)
 void DeckGUI::timerCallback() 
 {
     //juce::Logger::writeToLog("DeckGUI::timerCallback");
-	//waveformDisplay.setPositionRelative(player->getPositionRelative());
-	//infiniteRotarySlider.setValue(player->getPositionRelative() * 100);
+	if (player->isPlaying())
+	{
+        double speed = 0.4f;
+        double positionRelative = player->getPositionRelative();
+	    double positionInSeconds = player->getPositionInSeconds();
 
-    //juce::Logger::writeToLog("DeckGUI::timerCallback");
-    double positionRelative = player->getPositionRelative();
-	double positionInSeconds = player->getPositionInSeconds();
+        waveformDisplay.setPositionRelative(positionRelative);
+        infiniteRotarySlider.setValue(static_cast<int>(positionInSeconds * speed * 180));
 
-    waveformDisplay.setPositionRelative(positionRelative);
-    infiniteRotarySlider.setValue(positionRelative * 100);
-
-    // Calculate the angle based on the relative position
-    float angle = static_cast<float>(positionInSeconds * juce::MathConstants<double>::pi * 0.4);
-    infiniteRotarySlider.setAngle(angle);
+        // Calculate the angle based on the relative position
+        float angle = static_cast<float>(positionInSeconds * juce::MathConstants<double>::pi * speed);
+        infiniteRotarySlider.setAngle(angle);
+	}
 }

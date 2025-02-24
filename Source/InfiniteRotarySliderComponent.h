@@ -41,6 +41,8 @@ public:
 
     std::function<void()> onValueChange;
 
+    std::function<void(double)> onTrackPositionChange;
+
     /** Underlying juce::Slider component is exposed in order to allow the user to set styles etc. */
     juce::Slider slider;
 
@@ -50,7 +52,7 @@ public:
 private:
 
     float m_oneRevolutionSliderMin{ 0.0f };
-    float m_oneRevolutionSliderMax{ 100.0f };
+    float m_oneRevolutionSliderMax{ 360.0f };
 
     float m_angle{ 0.0f };
 
@@ -62,10 +64,10 @@ private:
 
     float m_value{ 0.0f };
     float m_step{ 1.0f };
-    float m_adjustedValue{ 40.0f };
+    float m_adjustedValue{ 0.0f };
 
-    float m_knobMin{ 40.0f };
-    float m_knobMax{ 400.0f };
+    float m_knobMin{ 0.0f };
+    float m_knobMax{ 100.0f * 360 };
 
     /** Inner logic - no need to customize anything here */
     void m_processSliderValue(float value);

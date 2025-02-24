@@ -19,7 +19,7 @@
 /*
 */
 class DeckGUI  :    public juce::Component,
-	                public juce::Button::Listener,
+	                public juce::Button::Listener, 
 	                public juce::Slider::Listener,
 	                public juce::FileDragAndDropTarget,
                     public juce::Timer
@@ -44,6 +44,8 @@ public:
 private:
 
     InfiniteRotarySliderComponent infiniteRotarySlider;
+
+	void playButtonSetColor();
 
     juce::TextButton playButton{ "PLAY" };
     juce::TextButton stopButton{ "STOP" };

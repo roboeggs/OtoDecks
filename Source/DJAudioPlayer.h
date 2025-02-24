@@ -29,6 +29,7 @@ public:
 
     void start();
     void stop();
+    bool isPlaying();
     
     /* get the relative position of the playhead */
     double getPositionRelative();
