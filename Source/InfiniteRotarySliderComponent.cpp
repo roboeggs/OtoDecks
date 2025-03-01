@@ -159,8 +159,7 @@ void InfiniteRotarySliderComponent::m_processSliderValue(float value) {
     //}
     // Notify the track position change
     if (onTrackPositionChange) {
-        double newPosition = m_adjustedValue / 180 * 0.4; // Assuming the value is scaled to 0-100
-        onTrackPositionChange(newPosition);
+        onTrackPositionChange();
     }
 }
 

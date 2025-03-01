@@ -42,7 +42,7 @@ public:
     void timerCallback();
 
 private:
-
+    const double speed = 0.8f;
     InfiniteRotarySliderComponent infiniteRotarySlider;
 
 	void playButtonSetColor();

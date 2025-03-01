@@ -676,6 +676,9 @@
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>OtoDecks\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\FileBrowserComponent.cpp">
+      <Filter>OtoDecks\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\DJAudioPlayer.cpp">
       <Filter>OtoDecks\Source</Filter>
     </ClCompile>
@@ -3535,6 +3538,9 @@
       <Filter>OtoDecks\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\WaveformDisplay.h">
+      <Filter>OtoDecks\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\FileBrowserComponent.h">
       <Filter>OtoDecks\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MainComponent.h">

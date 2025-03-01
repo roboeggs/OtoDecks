@@ -41,7 +41,7 @@ public:
 
     std::function<void()> onValueChange;
 
-    std::function<void(double)> onTrackPositionChange;
+    std::function<void()> onTrackPositionChange;
 
     /** Underlying juce::Slider component is exposed in order to allow the user to set styles etc. */
     juce::Slider slider;

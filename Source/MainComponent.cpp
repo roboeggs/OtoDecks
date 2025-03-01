@@ -10,7 +10,9 @@ MainComponent::MainComponent()
 	addAndMakeVisible(deckGUI2);
 
 	addAndMakeVisible(playlistComponent);
+	addAndMakeVisible(fileBrowser);
 
+	fileBrowser.setBounds(getLocalBounds());
 	formatManager.registerBasicFormats();
 }
 
@@ -32,10 +34,17 @@ void MainComponent::paint (juce::Graphics& g)
 
 void MainComponent::resized()
 {
-	deckGUI1.setBounds(0, 0, getWidth()/2, getHeight() / 2);
-	deckGUI2.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight() / 2);
+    int width = getWidth();
+    int height = getHeight();
+    int halfWidth = width / 2;
+    int halfHeight = height / 2;
 
-	playlistComponent.setBounds(0, getHeight() / 2, getWidth(), getHeight() / 2);
+    deckGUI1.setBounds(0, 0, halfWidth, halfHeight);
+    deckGUI2.setBounds(halfWidth, 0, halfWidth, halfHeight);
+
+    int thirdWidth = width / 3;
+    fileBrowser.setBounds(0, halfHeight, thirdWidth, halfHeight);
+    playlistComponent.setBounds(thirdWidth, halfHeight, 2 * thirdWidth, halfHeight);
 }
 
 

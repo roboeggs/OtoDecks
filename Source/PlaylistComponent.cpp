@@ -26,8 +26,8 @@ PlaylistComponent::PlaylistComponent()
     trackTitles.push_back("Track 7");
     trackTitles.push_back("Track 8");
 
-	tableComponent.getHeader().addColumn("Title title", 0, 300);
-    tableComponent.getHeader().addColumn("", 1, 200);
+	tableComponent.getHeader().addColumn("Title title", 1, 300);
+    tableComponent.getHeader().addColumn("Second title", 2, 200);
     tableComponent.setModel(this);
 
 
@@ -126,4 +126,10 @@ void PlaylistComponent::buttonClicked(juce::Button* button)
 {
 	int id = std::stoi(button->getComponentID().toStdString());
     juce::Logger::writeToLog("PlaylistComponent::buttonClicked: " + trackTitles[id]);
+}
+
+void PlaylistComponent::addTrack(const juce::String& trackPath)
+{
+    trackTitles.push_back(trackPath.toStdString());
+    tableComponent.updateContent();
 }

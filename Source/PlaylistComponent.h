@@ -48,6 +48,8 @@ public:
                                         juce::Component* existingComponentToUpdate) override;
 
 	void buttonClicked(juce::Button* button)  override;
+    void addTrack(const juce::String& trackPath);
+
 
 private:
     juce::TableListBox tableComponent;

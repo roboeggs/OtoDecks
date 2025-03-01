@@ -1,4 +1,4 @@
-﻿/*
+/*
   ==============================================================================
 
     DeckGUI.cpp
@@ -78,7 +78,9 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
         };
 
     // Set the onTrackPositionChange callback for the infiniteRotarySlider
-    infiniteRotarySlider.onTrackPositionChange = [this, player](double newPosition) {
+    infiniteRotarySlider.onTrackPositionChange = [this, player]() {
+        //player->setPositionRelative(newPosition);
+        double newPosition = infiniteRotarySlider.getValue() / (100 * 180 * speed);
         player->setPositionRelative(newPosition);
         };
 }
@@ -234,7 +236,6 @@ void DeckGUI::timerCallback()
     //juce::Logger::writeToLog("DeckGUI::timerCallback");
 	if (player->isPlaying())
 	{
-        double speed = 0.4f;
         double positionRelative = player->getPositionRelative();
 	    double positionInSeconds = player->getPositionInSeconds();
 

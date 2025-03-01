@@ -4,7 +4,8 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="HMTT7L" name="OtoDecks">
     <GROUP id="{63173A5D-A24A-1660-9097-F7EAF0DA850B}" name="Source">
-      <FILE id="c3n192" name="DeckGUI.h" compile="0" resource="0" file="Source/DeckGUI.h"/>
+      <FILE id="c3n192" name="DeckGUI.h" compile="0" resource="0" file="Source/DeckGUI.h"
+            xcodeResource="0"/>
       <FILE id="DiySDk" name="PlaylistComponent.cpp" compile="1" resource="0"
             file="Source/PlaylistComponent.cpp" skipPCH="1"/>
       <FILE id="sMjJmc" name="DeckGUI.cpp" compile="1" resource="0" file="Source/DeckGUI.cpp"
@@ -17,6 +18,10 @@
             file="Source/WaveformDisplay.h"/>
       <FILE id="sz3Bk8" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"
             skipPCH="1"/>
+      <FILE id="pgenCV" name="FileBrowserComponent.h" compile="0" resource="0"
+            file="Source/FileBrowserComponent.h"/>
+      <FILE id="ZMUPNx" name="FileBrowserComponent.cpp" compile="1" resource="0"
+            file="Source/FileBrowserComponent.cpp" skipPCH="1"/>
       <FILE id="ZbgK0o" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="rzAOoO" name="DJAudioPlayer.cpp" compile="1" resource="0"
             file="Source/DJAudioPlayer.cpp" skipPCH="1"/>
