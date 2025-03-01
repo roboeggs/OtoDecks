@@ -31,18 +31,23 @@ void FileBrowserComponent::selectionChanged()
 
 void FileBrowserComponent::fileClicked(const juce::File& file, const juce::MouseEvent& event)
 {
-
+    // Если клик был по директории, запускаем сканирование
+    if (file.isDirectory())
+    {
+        scanAndAddFiles(file);
+    }
 }
 
 void FileBrowserComponent::fileDoubleClicked(const juce::File& file)
 {
 
 }
-
 void FileBrowserComponent::browserRootChanged(const juce::File& newRoot)
 {
+    juce::Logger::writeToLog("browserRootChanged called: " + newRoot.getFullPathName());
     scanAndAddFiles(newRoot);
 }
+
 void FileBrowserComponent::scanAndAddFiles(const juce::File& directory)
 {
     if (!directory.isDirectory())

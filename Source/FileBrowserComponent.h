@@ -1,40 +1,40 @@
-﻿/*
-  ==============================================================================
+﻿    /*
+      ==============================================================================
 
-    FileBrowserComponent.h
-    Created: 1 Mar 2025 11:24:27am
-    Author:  andfi
+        FileBrowserComponent.h
+        Created: 1 Mar 2025 11:24:27am
+        Author:  andfi
 
-  ==============================================================================
-*/
-
-
-#pragma once
+      ==============================================================================
+    */
 
 
-#include <JuceHeader.h>
-#include "PlaylistComponent.h"
+    #pragma once
 
-class FileBrowserComponent : public juce::Component,
-    private juce::FileBrowserListener
-{
-public:
-    FileBrowserComponent(PlaylistComponent& playlist);
-    void resized() override;
 
-private:
-    void selectionChanged() override;
-    void fileClicked(const juce::File& file, const juce::MouseEvent& event) override;
-    void fileDoubleClicked(const juce::File& file) override;
-    void browserRootChanged(const juce::File& newRoot) override;
+    #include <JuceHeader.h>
+    #include "PlaylistComponent.h"
 
-    void scanAndAddFiles(const juce::File& directory);
+    class FileBrowserComponent : public juce::Component,
+        private juce::FileBrowserListener
+    {
+    public:
+        FileBrowserComponent(PlaylistComponent& playlist);
+        void resized() override;
 
-    juce::TimeSliceThread thread{ "File Browser Thread" };
-    juce::DirectoryContentsList directoryList{ nullptr, thread };
-    juce::FileTreeComponent fileTreeComp{ directoryList };
+    private:
+        void selectionChanged() override;
+        void fileClicked(const juce::File& file, const juce::MouseEvent& event) override;
+        void fileDoubleClicked(const juce::File& file) override;
+        void browserRootChanged(const juce::File& newRoot) override;
 
-    PlaylistComponent& playlistComponent; // Ссылка на PlaylistComponent
+        void scanAndAddFiles(const juce::File& directory);
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FileBrowserComponent)
-};
+        juce::TimeSliceThread thread{ "File Browser Thread" };
+        juce::DirectoryContentsList directoryList{ nullptr, thread };
+        juce::FileTreeComponent fileTreeComp{ directoryList };
+
+        PlaylistComponent& playlistComponent; // Ссылка на PlaylistComponent
+
+        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FileBrowserComponent)
+    };
