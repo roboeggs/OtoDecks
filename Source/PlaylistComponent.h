@@ -13,16 +13,26 @@
 #include <JuceHeader.h>
 #include <vector>
 #include <string>
+#include "DeckGUI.h"
 
 //==============================================================================
 /*
 */
+
+struct TrackInfo
+{
+    juce::String path;
+    juce::String title;
+    double duration = 0.0;
+    int bpm = 0;
+};
+
 class PlaylistComponent  :  public juce::Component,
 	                        public juce::TableListBoxModel,
                             public juce::Button::Listener
 {
 public:
-    PlaylistComponent();
+    PlaylistComponent(DeckGUI* deckGUI1, DeckGUI* deckGUI2);
     ~PlaylistComponent() override;
 
     void paint (juce::Graphics&) override;
@@ -53,7 +63,9 @@ public:
 
 private:
     juce::TableListBox tableComponent;
-	std::vector<std::string> trackTitles;
+    std::vector<TrackInfo> tracks;
+    DeckGUI* deckGUI1;
+    DeckGUI* deckGUI2;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PlaylistComponent)
 };

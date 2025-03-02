@@ -21,7 +21,7 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     addAndMakeVisible(playButton);
-    addAndMakeVisible(stopButton);
+    //addAndMakeVisible(stopButton);
     addAndMakeVisible(loadButton);
 
 
@@ -38,9 +38,10 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
 
 
 	playButton.addListener(this);
-    stopButton.addListener(this);
+    //stopButton.addListener(this);
     loadButton.addListener(this);
 
+    //player->stop();
     playButtonSetColor();
 
 	speedSlider.setRange(0, 1);
@@ -144,7 +145,7 @@ void DeckGUI::resized()
     // colum 2
     //posSlider.setBounds(colW, rowH * 2, colW, rowH * 3);
     playButton.setBounds(colW, rowH * 5, colW / 2, rowH);
-    stopButton.setBounds(colW + colW / 2, rowH * 5, colW / 2, rowH);
+    //stopButton.setBounds(colW + colW / 2, rowH * 5, colW / 2, rowH);
     loadButton.setBounds(colW, rowH * 6, colW, rowH);
 
     // This is called when the MainComponent is resized.
@@ -174,11 +175,11 @@ void DeckGUI::buttonClicked(juce::Button* button)
         }
         playButtonSetColor();
     }
-    if (button == &stopButton)
+    /*if (button == &stopButton)
     {
     	juce::Logger::writeToLog("Stop button was clicked");
     	player->stop();
-    }
+    }*/
     if (button == &loadButton) 
     {
     	// source: https://docs.juce.com/master/tutorial_playing_sound_files.html
@@ -192,9 +193,7 @@ void DeckGUI::buttonClicked(juce::Button* button)
     	fChooser.launchAsync(fileChooserFlags, [this](const juce::FileChooser& chooser)
     		{
     			juce::File chosenFile = chooser.getResult();
-    			player->loadURL(juce::URL{ chosenFile });
-                waveformDisplay.loadURL(juce::URL{ chosenFile });
-
+                loadTrack(juce::URL{ chosenFile });
     		});
     }
 }
@@ -246,4 +245,10 @@ void DeckGUI::timerCallback()
         float angle = static_cast<float>(positionInSeconds * juce::MathConstants<double>::pi * speed);
         infiniteRotarySlider.setAngle(angle);
 	}
+}
+
+void DeckGUI::loadTrack(const juce::URL& audioURL)
+{
+    player->loadURL(audioURL);
+    waveformDisplay.loadURL(audioURL);
 }

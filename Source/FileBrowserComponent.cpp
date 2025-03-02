@@ -7,7 +7,7 @@ FileBrowserComponent::FileBrowserComponent(PlaylistComponent& playlist)
     thread.startThread();
     addAndMakeVisible(fileTreeComp);
 
-    directoryList.setDirectory(juce::File::getSpecialLocation(juce::File::userDocumentsDirectory), true, true);
+    directoryList.setDirectory(juce::File::getSpecialLocation(juce::File::userMusicDirectory), true, true);
     //directoryList.addChangeListener(this);
 
     fileTreeComp.setTitle("Files");

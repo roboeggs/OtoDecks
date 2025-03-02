@@ -43,7 +43,7 @@ private:
     DeckGUI deckGUI2{&player2, formatManager, thumbCache};
 
 	juce::MixerAudioSource mixerSource;
-	PlaylistComponent playlistComponent;
+    PlaylistComponent playlistComponent {&deckGUI1, &deckGUI2};
 
     FileBrowserComponent fileBrowser { playlistComponent };
 

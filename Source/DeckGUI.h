@@ -36,6 +36,7 @@ public:
     void buttonClicked(juce::Button*) override;
     /** implement Slider::Listener */
     void sliderValueChanged(juce::Slider* slider) override;
+    void loadTrack(const juce::URL& audioURL);
 
     bool isInterestedInFileDrag(const juce::StringArray& files) override;
 	void filesDropped(const juce::StringArray& files, int x, int y) override;
