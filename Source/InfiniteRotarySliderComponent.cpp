@@ -52,11 +52,11 @@ void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
 {
     //float rectH = 10.0f;
 
-    float rectW = 1.0f;
-    float rectH = 10.0f;
-    float lineThickness = 4.0f;
     //float radius = 80.0f;
+    float lineThickness = 4.0f;
     float radius = juce::jmin(getWidth(), getHeight()) * 0.5f - lineThickness;
+    float rectW = 2.0f;
+    float rectH = radius * 2 / 3; // New length
 
     juce::Path p;
 
@@ -72,6 +72,7 @@ void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
             getWidth() * 0.5,
             getHeight() * 0.5));
 
+    // Set the color to white and fill the path, which creates the white line
     g.setColour(juce::Colours::white);
     g.fillPath(p);
 
@@ -90,10 +91,11 @@ void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
 
     juce::Path spot;
 
-    juce::ColourGradient gradient(juce::Colours::orange, 0, 0, juce::Colours::blue, getWidth(), getHeight(), false);
-    g.setGradientFill(gradient);
+    /*juce::ColourGradient gradient(juce::Colours::orange, 0, 0, juce::Colours::blue, getWidth(), getHeight(), false);
+    g.setGradientFill(gradient);*/
 
-    //g.setColour(juce::Colours::orange);
+
+    g.setColour(juce::Colours::orange);
 
     g.drawEllipse(getWidth() * 0.5 - radius,
                 getHeight() * 0.5 - radius,
@@ -101,18 +103,26 @@ void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
                 radius * 2,
                 lineThickness);
 
-    spot.addEllipse(getWidth() * 0.5f - spotR,
+    g.setColour(juce::Colours::grey);
+
+    g.fillEllipse(getWidth() * 0.5 - radius / 3,
+        getHeight() * 0.5 - radius / 3,
+        radius * 2 / 3,
+        radius * 2 / 3);
+
+   /* g.drawEllipse(getWidth() * 0.5f - spotR,
         getHeight() * 0.5f - radius + spotR * 2.0f,
         spotR * 2.0f,
-        spotR * 2.0f);
+        spotR * 2.0f,
+        0);*/
 
-    spot.applyTransform(
-        juce::AffineTransform::rotation(
-            getAngle(),
-            getWidth() * 0.5,
-            getHeight() * 0.5));
+    //spot.applyTransform(
+    //    juce::AffineTransform::rotation(
+    //        getAngle(),
+    //        getWidth() * 0.5,
+    //        getHeight() * 0.5));
 
-    g.fillPath(spot);
+    //g.fillPath(spot);
 
 }
 

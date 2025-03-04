@@ -75,7 +75,6 @@ void PlaylistComponent::paintCell(juce::Graphics& g,
 
     if (columnId == 1) text = tracks[rowNumber].title;
     else if (columnId == 2) text = juce::String(tracks[rowNumber].duration, 2) + " sec";
-    else if (columnId == 3) text = (tracks[rowNumber].bpm > 0) ? juce::String(tracks[rowNumber].bpm) + " BPM" : "N/A";
 
     g.drawText(text, 2, 0, width - 4, height, juce::Justification::centredLeft, true);
 }

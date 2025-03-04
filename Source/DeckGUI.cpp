@@ -21,13 +21,10 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     addAndMakeVisible(playButton);
-    //addAndMakeVisible(stopButton);
-    addAndMakeVisible(loadButton);
 
 
     addAndMakeVisible(volSlider);
     addAndMakeVisible(speedSlider);
-    //addAndMakeVisible(posSlider);
     addAndMakeVisible(infiniteRotarySlider);
 
 	addAndMakeVisible(waveformDisplay);
@@ -38,10 +35,7 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
 
 
 	playButton.addListener(this);
-    //stopButton.addListener(this);
-    loadButton.addListener(this);
 
-    //player->stop();
     playButtonSetColor();
 
 	speedSlider.setRange(0, 1);
@@ -118,18 +112,6 @@ void DeckGUI::paint (juce::Graphics& g)
 
 void DeckGUI::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
-    /*
-    double rowH = getHeight() / 10;
-    playButton.setBounds(0, 0, getWidth(), rowH);
-    stopButton.setBounds(0, rowH, getWidth(), rowH);
-    volSlider.setBounds(0, rowH * 2, getWidth(), rowH);
-    speedSlider.setBounds(0, rowH * 3, getWidth(), rowH);
-    posSlider.setBounds(0, rowH * 4, getWidth(), rowH * 2);
-	waveformDisplay.setBounds(0, rowH * 7, getWidth(), rowH * 2);
-    loadButton.setBounds(0, rowH * 9, getWidth(), rowH);
-    */
 
     // colums
 
@@ -137,22 +119,14 @@ void DeckGUI::resized()
 	double rowH = getHeight() / 8;
 
 	// colum 1
-	double sliderW = colW / 2;
+	double sliderW = colW / 3;
     waveformDisplay.setBounds(0, 0, getWidth(), rowH * 2);
     volSlider.setBounds(0, rowH * 2, sliderW, rowH * 5);
     speedSlider.setBounds(sliderW * 1, rowH * 2, sliderW, rowH * 5);
 
     // colum 2
-    //posSlider.setBounds(colW, rowH * 2, colW, rowH * 3);
-    playButton.setBounds(colW, rowH * 5, colW / 2, rowH);
-    //stopButton.setBounds(colW + colW / 2, rowH * 5, colW / 2, rowH);
-    loadButton.setBounds(colW, rowH * 6, colW, rowH);
-
-    // This is called when the MainComponent is resized.
-    // If you add any child components, this is where you should
-    // update their positions.
-    /*auto area = getLocalBounds();
-    area.reduce(10, 10);*/
+	double buttonW = colW / 4;
+    playButton.setBounds(colW + buttonW * 3, rowH * 7, buttonW, rowH);
     infiniteRotarySlider.setBounds(colW, rowH * 2, colW, rowH * 3);
 }
 
@@ -174,27 +148,6 @@ void DeckGUI::buttonClicked(juce::Button* button)
     	    player->start();
         }
         playButtonSetColor();
-    }
-    /*if (button == &stopButton)
-    {
-    	juce::Logger::writeToLog("Stop button was clicked");
-    	player->stop();
-    }*/
-    if (button == &loadButton) 
-    {
-    	// source: https://docs.juce.com/master/tutorial_playing_sound_files.html
-    	// this does work in 6.1 but the syntax is a little funky
-    	// https://docs.juce.com/master/classFileChooser.html#ac888983e4abdd8401ba7d6124ae64ff3
-    	// - configure the dialogue
-    	auto fileChooserFlags = juce::FileBrowserComponent::canSelectFiles;
-    	// - launch out of the main thread
-    	// - note how we use a lambda function which you've probably
-    	// not seen before. Please do not worry too much about that. 
-    	fChooser.launchAsync(fileChooserFlags, [this](const juce::FileChooser& chooser)
-    		{
-    			juce::File chosenFile = chooser.getResult();
-                loadTrack(juce::URL{ chosenFile });
-    		});
     }
 }
 
@@ -226,7 +179,7 @@ void DeckGUI::filesDropped(const juce::StringArray& files, int x, int y)
     juce::Logger::writeToLog("DeckGUI::filesDropped");
 	if (files.size() == 1)
 	{
-		player->loadURL(juce::URL{ juce::File{files[0]} });
+		loadTrack(juce::URL{ juce::File{files[0]} });
 	}
 }
 
@@ -251,4 +204,5 @@ void DeckGUI::loadTrack(const juce::URL& audioURL)
 {
     player->loadURL(audioURL);
     waveformDisplay.loadURL(audioURL);
+    playButtonSetColor();
 }

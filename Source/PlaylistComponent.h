@@ -24,7 +24,6 @@ struct TrackInfo
     juce::String path;
     juce::String title;
     double duration = 0.0;
-    int bpm = 0;
 };
 
 class PlaylistComponent  :  public juce::Component,
