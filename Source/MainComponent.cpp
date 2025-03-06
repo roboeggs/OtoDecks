@@ -3,7 +3,7 @@
 //==============================================================================
 MainComponent::MainComponent()
 {
-    setSize (600, 400);
+    setSize (800, 500);
     setAudioChannels(0, 2);
 
 	addAndMakeVisible(deckGUI1);

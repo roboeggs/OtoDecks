@@ -8,14 +8,13 @@ FileBrowserComponent::FileBrowserComponent(PlaylistComponent& playlist)
     addAndMakeVisible(fileTreeComp);
 
     directoryList.setDirectory(juce::File::getSpecialLocation(juce::File::userMusicDirectory), true, true);
-    //directoryList.addChangeListener(this);
+;
 
     fileTreeComp.setTitle("Files");
     fileTreeComp.setColour(juce::FileTreeComponent::backgroundColourId, juce::Colours::lightgrey.withAlpha(0.6f));
 
-    fileTreeComp.addListener(this); // Исправлено!
+    fileTreeComp.addListener(this);
 
-    DBG("FileBrowserComponent initialized");
 }
 
 void FileBrowserComponent::resized()
@@ -23,15 +22,15 @@ void FileBrowserComponent::resized()
     fileTreeComp.setBounds(getLocalBounds());
 }
 
-// Реализация методов FileBrowserListener
+
 void FileBrowserComponent::selectionChanged()
 {
-    DBG("File selection changed");
+
 }
 
 void FileBrowserComponent::fileClicked(const juce::File& file, const juce::MouseEvent& event)
 {
-    // Если клик был по директории, запускаем сканирование
+   
     if (file.isDirectory())
     {
         scanAndAddFiles(file);

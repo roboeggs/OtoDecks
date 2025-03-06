@@ -8,11 +8,11 @@ PlaylistComponent::PlaylistComponent(DeckGUI* deckGUI1, DeckGUI* deckGUI2)
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
 
-    tableComponent.getHeader().addColumn("Title", 1, 200);
-    tableComponent.getHeader().addColumn("Duration", 2, 100);
-    tableComponent.getHeader().addColumn("Play L", 3, 100);
-    tableComponent.getHeader().addColumn("Play R", 4, 100);
-    tableComponent.getHeader().addColumn("Delete", 5, 100);
+    tableComponent.getHeader().addColumn("Title", 1, 150);
+    tableComponent.getHeader().addColumn("Duration", 2, 60);
+    tableComponent.getHeader().addColumn("Play L", 3, 60);
+    tableComponent.getHeader().addColumn("Play R", 4, 60);
+    tableComponent.getHeader().addColumn("Delete", 5, 60);
     tableComponent.setModel(this);
 
     addAndMakeVisible(tableComponent);
@@ -74,7 +74,7 @@ void PlaylistComponent::paintCell(juce::Graphics& g,
     juce::String text;
 
     if (columnId == 1) text = tracks[rowNumber].title;
-    else if (columnId == 2) text = juce::String(tracks[rowNumber].duration, 2) + " sec";
+    else if (columnId == 2) text = juce::String(tracks[rowNumber].duration, 2) + " s";
 
     g.drawText(text, 2, 0, width - 4, height, juce::Justification::centredLeft, true);
 }

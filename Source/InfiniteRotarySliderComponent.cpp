@@ -164,9 +164,7 @@ void InfiniteRotarySliderComponent::m_processSliderValue(float value) {
     m_adjustedValue = juce::jmin(m_adjustedValue, m_knobMax);
     m_adjustedValue = juce::jmax(m_adjustedValue, m_knobMin);
 
-    //if (onValueChange) {
-    //    onValueChange();
-    //}
+
     // Notify the track position change
     if (onTrackPositionChange) {
         onTrackPositionChange();

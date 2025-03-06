@@ -44,6 +44,14 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     volSlider.setValue(50);
     speedSlider.setValue(1);
 
+    volLabel.setText("Volume", juce::dontSendNotification);
+    volLabel.setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(volLabel);
+
+    speedLabel.setText("Speed", juce::dontSendNotification);
+    speedLabel.setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(speedLabel);
+
     volSlider.setSliderStyle(juce::Slider::LinearVertical);
     volSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20); // Размещение текстового поля
 	volSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::green); // Цвет текстового поля
@@ -66,17 +74,13 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
     waveformDisplay.onPositionChanged = [this, player](double newPosition) {
         player->setPositionRelative(newPosition);
         };
-    // Set the onValueChange callback for the infiniteRotarySlider
-    infiniteRotarySlider.onValueChange = [this, player]() {
-        double newPosition = infiniteRotarySlider.getValue() / 100.0;
-        player->setPositionRelative(newPosition);
-        };
+
 
     // Set the onTrackPositionChange callback for the infiniteRotarySlider
     infiniteRotarySlider.onTrackPositionChange = [this, player]() {
         //player->setPositionRelative(newPosition);
-        double newPosition = infiniteRotarySlider.getValue() / (100 * 180 * speed);
-        player->setPositionRelative(newPosition);
+        double newPosition = infiniteRotarySlider.getValue() / (180 * speed);
+        player->setPosition(newPosition);
         };
 }
     
@@ -121,19 +125,22 @@ void DeckGUI::resized()
 	// colum 1
 	double sliderW = colW / 3;
     waveformDisplay.setBounds(0, 0, getWidth(), rowH * 2);
-    volSlider.setBounds(0, rowH * 2, sliderW, rowH * 5);
-    speedSlider.setBounds(sliderW * 1, rowH * 2, sliderW, rowH * 5);
+    volSlider.setBounds(0, rowH * 3, sliderW, rowH * 5);
+    speedSlider.setBounds(sliderW * 1, rowH * 3, sliderW, rowH * 5);
 
     // colum 2
 	double buttonW = colW / 4;
-    playButton.setBounds(colW + buttonW * 3, rowH * 7, buttonW, rowH);
-    infiniteRotarySlider.setBounds(colW, rowH * 2, colW, rowH * 3);
+    playButton.setBounds(colW + buttonW * 2, rowH * 7, buttonW, rowH);
+    infiniteRotarySlider.setBounds(colW, rowH * 3, colW, rowH * 3);
+
+    volLabel.setBounds(0, rowH * 2, sliderW, rowH * 0.5);
+    speedLabel.setBounds(sliderW * 1, rowH * 2, sliderW, rowH * 0.5);
 }
 
 void DeckGUI::playButtonSetColor() 
 {
     playButton.setButtonText(player->isPlaying() ? "Stop" : "Play");
-    playButton.setColour(juce::TextButton::buttonColourId, player->isPlaying() ? juce::Colour(0xffed797f) : juce::Colour(0xff79ed7f));
+    playButton.setColour(juce::TextButton::buttonColourId, player->isPlaying() ? juce::Colour(0xffed797f) : juce::Colour(0xff00bd16));
 }
 
 void DeckGUI::buttonClicked(juce::Button* button)
@@ -185,13 +192,13 @@ void DeckGUI::filesDropped(const juce::StringArray& files, int x, int y)
 
 void DeckGUI::timerCallback() 
 {
-    //juce::Logger::writeToLog("DeckGUI::timerCallback");
+    
+    double positionRelative = player->getPositionRelative();
+    waveformDisplay.setPositionRelative(positionRelative);
 	if (player->isPlaying())
 	{
-        double positionRelative = player->getPositionRelative();
 	    double positionInSeconds = player->getPositionInSeconds();
 
-        waveformDisplay.setPositionRelative(positionRelative);
         infiniteRotarySlider.setValue(static_cast<int>(positionInSeconds * speed * 180));
 
         // Calculate the angle based on the relative position
