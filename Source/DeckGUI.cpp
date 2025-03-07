@@ -41,16 +41,20 @@ DeckGUI::DeckGUI(DJAudioPlayer* player,
 
     // Set slider styles
     volSlider.setSliderStyle(juce::Slider::LinearVertical);
-    volSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20); // Размещение текстового поля
-	volSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::green); // Цвет текстового поля
+    // Text field placement
+    volSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20);
+    // Color of the text field
+	volSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::green);
     volSlider.setNumDecimalPlacesToDisplay(0);
-    volSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack); // Убираем обводку текстового поля
+    // Removing the text field outline
+    volSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack);
 
     speedSlider.setSliderStyle(juce::Slider::LinearVertical);
     speedSlider.setNumDecimalPlacesToDisplay(3);
     speedSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::green);
     speedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 20);
-    speedSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack); // Убираем обводку текстового поля
+    // Removing the text field outline
+    speedSlider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack);
 
     posSlider.setSliderStyle(juce::Slider::Rotary);
 
