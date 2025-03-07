@@ -5,9 +5,6 @@
 PlaylistComponent::PlaylistComponent(DeckGUI* deckGUI1, DeckGUI* deckGUI2)
     : deckGUI1(deckGUI1), deckGUI2(deckGUI2)
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
-
     tableComponent.getHeader().addColumn("Title", 1, 150);
     tableComponent.getHeader().addColumn("Duration", 2, 60);
     tableComponent.getHeader().addColumn("Play L", 3, 60);
@@ -113,12 +110,10 @@ void PlaylistComponent::buttonClicked(juce::Button* button)
         if (action == 'L')
         {
             deckGUI1->loadTrack(audioURL);
-            //deckGUI1->player->start();
         }
         else if (action == 'R')
         {
             deckGUI2->loadTrack(audioURL);
-            //deckGUI2->player->start();
         }
     }
     else if (action == 'D')

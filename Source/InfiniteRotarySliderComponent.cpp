@@ -1,18 +1,7 @@
-/*
-  ==============================================================================
-
-    InfiniteRotarySliderComponent.cpp
-    Created: 20 Feb 2025 5:39:23pm
-    Author:  andfi
-
-  ==============================================================================
-*/
-
 #include <JuceHeader.h>
 #include "InfiniteRotarySliderComponent.h"
 
 
-//==============================================================================
 InfiniteRotarySliderComponent::InfiniteRotarySliderComponent()
 {
     slider.setSliderStyle(juce::Slider::Rotary);
@@ -45,14 +34,11 @@ InfiniteRotarySliderComponent::InfiniteRotarySliderComponent()
 }
 
 InfiniteRotarySliderComponent::~InfiniteRotarySliderComponent()
-{
-}
+{  }
 
 void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
 {
-    //float rectH = 10.0f;
 
-    //float radius = 80.0f;
     float lineThickness = 4.0f;
     float radius = juce::jmin(getWidth(), getHeight()) * 0.5f - lineThickness;
     float rectW = 2.0f;
@@ -76,24 +62,10 @@ void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
     g.setColour(juce::Colours::white);
     g.fillPath(p);
 
-    ///** Fill the whole circle with marks */
-    //for (int i{}; i < 19; ++i) {
-    //    p.applyTransform(
-    //        juce::AffineTransform::rotation(
-    //            0.1f * juce::MathConstants<float>::pi,
-    //            getWidth() * 0.5,
-    //            getHeight() * 0.5));
-    //    g.fillPath(p);
-    //}
+   
 
     /** Add knob handle (just a spot) */
     float spotR = 10.0f;
-
-    juce::Path spot;
-
-    /*juce::ColourGradient gradient(juce::Colours::orange, 0, 0, juce::Colours::blue, getWidth(), getHeight(), false);
-    g.setGradientFill(gradient);*/
-
 
     g.setColour(juce::Colours::orange);
 
@@ -109,21 +81,6 @@ void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
         getHeight() * 0.5 - radius / 3,
         radius * 2 / 3,
         radius * 2 / 3);
-
-   /* g.drawEllipse(getWidth() * 0.5f - spotR,
-        getHeight() * 0.5f - radius + spotR * 2.0f,
-        spotR * 2.0f,
-        spotR * 2.0f,
-        0);*/
-
-    //spot.applyTransform(
-    //    juce::AffineTransform::rotation(
-    //        getAngle(),
-    //        getWidth() * 0.5,
-    //        getHeight() * 0.5));
-
-    //g.fillPath(spot);
-
 }
 
 void InfiniteRotarySliderComponent::resized()

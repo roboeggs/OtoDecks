@@ -1,24 +1,12 @@
-/*
-  ==============================================================================
-
-    DJAudioPlayer.cpp
-    Created: 8 Feb 2025 10:28:44am
-    Author:  andfi
-
-  ==============================================================================
-*/
-
 #include "DJAudioPlayer.h"
 
 
 DJAudioPlayer::DJAudioPlayer(juce::AudioFormatManager& _formatManager) : formatManager(_formatManager)
-{
+{  }
 
-}
 DJAudioPlayer::~DJAudioPlayer()
-{
+{  }
 
-}
 void DJAudioPlayer::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
 {
 	formatManager.registerBasicFormats();
@@ -28,9 +16,9 @@ void DJAudioPlayer::prepareToPlay(int samplesPerBlockExpected, double sampleRate
 
 void DJAudioPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
 {
-	//transportSource.getNextAudioBlock(bufferToFill);
 	resampleSource.getNextAudioBlock(bufferToFill);
 }
+
 void DJAudioPlayer::releaseResources()
 {
 	transportSource.releaseResources();
@@ -53,6 +41,7 @@ void DJAudioPlayer::loadURL(const juce::URL& audioURL)
 		}
 	}
 }
+
 void DJAudioPlayer::setGain(double newGain)
 {
 	if (newGain < 0 || newGain > 100)
@@ -65,6 +54,7 @@ void DJAudioPlayer::setGain(double newGain)
 	}
 
 }
+
 void DJAudioPlayer::setSpeed(double ratio)
 {
 	if (ratio < 0 || ratio > 1)
@@ -76,6 +66,7 @@ void DJAudioPlayer::setSpeed(double ratio)
 		resampleSource.setResamplingRatio(ratio);
 	}
 }
+
 void DJAudioPlayer::setPosition(double posInSecs) 
 {
 	transportSource.setPosition(posInSecs);

@@ -1,17 +1,6 @@
-/*
-  ==============================================================================
-
-    WaveformDisplay.cpp
-    Created: 12 Feb 2025 9:04:29am
-    Author:  andfi
-
-  ==============================================================================
-*/
-
 #include <JuceHeader.h>
 #include "WaveformDisplay.h"
 
-//==============================================================================
 WaveformDisplay::WaveformDisplay(juce::AudioFormatManager& formatManagerToUse,
                                     juce::AudioThumbnailCache& cacheToUse) :
                                     audioThumb(1000, formatManagerToUse, cacheToUse),
@@ -31,13 +20,6 @@ WaveformDisplay::~WaveformDisplay()
 
 void WaveformDisplay::paint (juce::Graphics& g)
 {
-    /* This demo code just fills the component's background and
-       draws some placeholder text to get you started.
-
-       You should replace everything in this method with your own
-       drawing code..
-    */
-
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
 
     g.setColour (juce::Colours::grey);
